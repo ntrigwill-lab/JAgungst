@@ -30,8 +30,8 @@ def predict_image(img: Image.Image):
     return preds[0]
 
 # Streamlit UI
-st.title("Deteksi Penyakit Daun Jagung")
-uploaded_file = st.file_uploader("Upload gambar daun jagung...", type=["jpg", "jpeg", "png"])
+st.title("🌽 Deteksi Penyakit Daun Jagung")
+uploaded_file = st.file_uploader("🖼️ Upload gambar daun...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
@@ -43,7 +43,7 @@ if uploaded_file is not None:
     df_results = pd.DataFrame([preds], columns=[
         'Northern Leaf Blight', 'Common Rust', 'Gray Leaf Spot', 'Healthy'
     ])
-    st.subheader("Hasil Prediksi:")
+    st.subheader("📊 Hasil Prediksi:")
     st.dataframe(df_results)
 
     # Tampilkan hasil final
