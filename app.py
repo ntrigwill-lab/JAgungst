@@ -8,7 +8,7 @@ import pandas as pd
 # Load model SavedModel (.pb format) - harus folder, bukan file tunggal
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model("model_mobnetv2_inference", compile=False)  # ini folder, bukan file .pb saja
+    model = tf.keras.models.load_model("model_mobnetv2", compile=False)  # ini folder, bukan file .pb saja
     return model
 
 # Mapping label kelas
