@@ -37,7 +37,7 @@ def predict_image(img: Image.Image):
     return preds[0]
 
 # Streamlit UI
-st.title("🌽 Deteksi Penyakit Daun Jagung")
+st.title("🌽 Klasifikasi Penyakit Daun Jagung")
 uploaded_file = st.file_uploader("🖼️ Upload gambar daun...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
