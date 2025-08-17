@@ -15,7 +15,7 @@ def preprocess_image(img: Image.Image):
     img = np.expand_dims(img, axis=0)
     return img
 
-# Load model SavedModel (.pb format) - harus folder, bukan file tunggal
+# Load modell
 @st.cache_resource
 def load_model():
     model = tf.keras.models.load_model("model_mobnetv2", compile=False)
