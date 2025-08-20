@@ -38,7 +38,7 @@ def predict_image(img: Image.Image):
 
 # Streamlit UI
 st.title("🌽 Klasifikasi Penyakit Daun Jagung")
-uploaded_file = st.file_uploader("🖼️ Upload gambar daun...", type=["jpg", "jpeg", "png", "bmp", "webp"])
+uploaded_file = st.file_uploader("🖼️ Upload gambar daun...", type=["jpg", "jpeg", "png", "bmp", "webp", "gif"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
