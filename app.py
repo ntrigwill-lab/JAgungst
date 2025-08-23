@@ -15,7 +15,7 @@ def preprocess_image(img: Image.Image):
     img = np.expand_dims(img, axis=0)
     return img
 
-# Load modell
+# Load model
 @st.cache_resource
 def load_model():
     model = tf.keras.models.load_model("model_mobnetv2", compile=False)
@@ -47,12 +47,21 @@ if uploaded_file is not None:
     try:
         preds = predict_image(image)
 
-        # Tampilkan hasil prediksi dalam bentuk DataFrame
+        # Buat DataFrame hasil prediksi
         df_results = pd.DataFrame([preds], columns=[
             'Northern Leaf Blight', 'Common Rust', 'Gray Leaf Spot', 'Healthy'
         ])
-        st.subheader("📊 Hasil Prediksi:")
-        st.dataframe(df_results)
+
+        st.subheader("📊 Hasil Prediksi (Probabilitas)")
+
+        # Normalisasi ke persen agar lebih enak dilihat
+        df_results_percent = df_results * 100
+
+        # Tampilkan grafik batang
+        st.bar_chart(df_results_percent.T)
+
+        # Tampilkan juga tabel angkanya (opsional)
+        st.dataframe(df_results_percent.style.format("{:.2f}%"))
 
         # Tampilkan hasil final
         predicted_class = np.argmax(preds)
