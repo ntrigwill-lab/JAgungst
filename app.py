@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 import pandas as pd
 
-# Fungsi untuk preprocessing gambar secara aman
+# Fungsi untuk preprocessing gambar
 def preprocess_image(img: Image.Image):
     # Pastikan gambar dalam format RGB (bukan RGBA)
     if img.mode != 'RGB':
@@ -47,20 +47,20 @@ if uploaded_file is not None:
     try:
         preds = predict_image(image)
 
-        # Buat DataFrame hasil prediksi
+        # DataFrame hasil prediksi
         df_results = pd.DataFrame([preds], columns=[
             'Northern Leaf Blight', 'Common Rust', 'Gray Leaf Spot', 'Healthy'
         ])
 
         st.subheader("📊 Hasil Prediksi (Probabilitas)")
 
-        # Normalisasi ke persen agar lebih enak dilihat
+        # Normalisasi ke persen
         df_results_percent = df_results * 100
 
         # Tampilkan grafik batang
         st.bar_chart(df_results_percent.T)
 
-        # Tampilkan juga tabel angkanya (opsional)
+        # Tampilkan tabel angka
         st.dataframe(df_results_percent.style.format("{:.2f}%"))
 
         # Tampilkan hasil final
